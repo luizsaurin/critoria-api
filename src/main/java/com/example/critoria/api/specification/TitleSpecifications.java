@@ -5,11 +5,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.example.critoria.api.entity.TitleEntity;
 
-public class TitleSpecifications {
+import lombok.experimental.UtilityClass;
 
-	private TitleSpecifications() {
-		throw new IllegalStateException("Utility class");
-	}
+@UtilityClass
+public class TitleSpecifications {
 
 	public static Specification<TitleEntity> nameContains(String name) {
 		return (root, query, cb) -> {

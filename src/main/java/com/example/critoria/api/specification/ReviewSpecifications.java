@@ -4,12 +4,11 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.example.critoria.api.entity.ReviewEntity;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class ReviewSpecifications {
 	
-	private ReviewSpecifications() {
-        throw new IllegalStateException("Utility class");
-    }
-
     public static Specification<ReviewEntity> titleIdEquals(Long titleId) {
         return (root, query, cb) -> {
             if (titleId == null) return null;

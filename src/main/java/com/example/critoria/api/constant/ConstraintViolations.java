@@ -5,15 +5,13 @@ import java.util.Map;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@UtilityClass
 public final class ConstraintViolations {
 	
-	private ConstraintViolations() {
-		throw new IllegalStateException("Utility class");
-	}
-
 	public static final String DEFAULT_MESSAGE = "Database constraint violation";
 
 	public static final String TITLES_NAME_UNIQUE = "titles_name_unique";
@@ -33,7 +31,7 @@ public final class ConstraintViolations {
 		try {
 			ConstraintViolationException constraintViolationException = (ConstraintViolationException) ex.getCause();
 			return CONSTRAINT_MAP.getOrDefault(constraintViolationException.getConstraintName(), DEFAULT_MESSAGE);
-		} catch (ClassCastException | NullPointerException _) {
+		} catch (Exception _) {
 			log.warn("Could not get message for constraint");
 			return DEFAULT_MESSAGE;
 		}
