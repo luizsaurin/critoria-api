@@ -87,10 +87,10 @@ class ControllerAdviceTest {
 				Arguments.of(
 						List.of(new FieldError("object", "name", "must not be blank")),
 						"name must not be blank"),
-						Arguments.of(
-					List.of(
-						new FieldError("object", "name", "must not be blank"),
-						new FieldError("object", "year", "must not be null")),
+				Arguments.of(
+						List.of(
+								new FieldError("object", "name", "must not be blank"),
+								new FieldError("object", "year", "must not be null")),
 						"name must not be blank; year must not be null"));
 	}
 
