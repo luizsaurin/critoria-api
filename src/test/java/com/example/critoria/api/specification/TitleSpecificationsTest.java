@@ -36,9 +36,16 @@ class TitleSpecificationsTest {
 	}
 
 	@Test
-	void nameContains_noSpec_returnAll() {
+	void noSpecification_returnAll() {
 		List<TitleEntity> result = titleRepository.findAll();
 
+		assertEquals(2, result.size());
+	}
+
+	@Test
+	void nameContains_nullName_returnAll() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains(null));
+		
 		assertEquals(2, result.size());
 	}
 
@@ -50,7 +57,7 @@ class TitleSpecificationsTest {
 	}
 
 	@Test
-	void nameContains_oneValidName_returnMatch() {
+	void nameContains_oneValidName_returnOneMatch() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains("New Hope"));
 		
 		assertEquals(1, result.size());
@@ -65,11 +72,31 @@ class TitleSpecificationsTest {
 	}
 
 	@Test
-	void nameContains_nullName_returnAll() {
-		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains(null));
+	void releaseYearGte_nullYear_returnAll() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(null));
 		
 		assertEquals(2, result.size());
 	}
 
-	
+	@Test
+	void releaseYearGte_yearZero_returnMatches() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(0));
+		
+		assertEquals(2, result.size());
+	}
+
+	@Test
+	void releaseYearGte_oneValidYear_returnMatch() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(1980));
+		
+		assertEquals(1, result.size());
+	}
+
+	@Test
+	void releaseYearGte_hightValueYear_returnNone() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(9999));
+		
+		assertTrue(result.isEmpty());
+	}
+
 }
