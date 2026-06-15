@@ -45,21 +45,21 @@ class TitleSpecificationsTest {
 	@Test
 	void nameContains_nullName_returnAll() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains(null));
-		
+
 		assertEquals(2, result.size());
 	}
 
 	@Test
 	void nameContains_commonName_returnMatches() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains("Star Wars"));
-		
+
 		assertEquals(2, result.size());
 	}
 
 	@Test
 	void nameContains_oneValidName_returnOneMatch() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains("New Hope"));
-		
+
 		assertEquals(1, result.size());
 		assertEquals(entity1, result.getFirst());
 	}
@@ -67,36 +67,64 @@ class TitleSpecificationsTest {
 	@Test
 	void nameContains_nonExistingName_returnNone() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.nameContains("Example"));
-		
+
 		assertTrue(result.isEmpty());
 	}
 
 	@Test
 	void releaseYearGte_nullYear_returnAll() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(null));
-		
+
 		assertEquals(2, result.size());
 	}
 
 	@Test
 	void releaseYearGte_yearZero_returnMatches() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(0));
-		
+
 		assertEquals(2, result.size());
 	}
 
 	@Test
 	void releaseYearGte_oneValidYear_returnMatch() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(1980));
-		
+
 		assertEquals(1, result.size());
 	}
 
 	@Test
 	void releaseYearGte_hightValueYear_returnNone() {
 		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearGte(9999));
-		
+
 		assertTrue(result.isEmpty());
+	}
+
+	@Test
+	void releaseYearLte_nullYear_returnAll() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearLte(null));
+
+		assertEquals(2, result.size());
+	}
+
+	@Test
+	void releaseYearLte_yearZero_returnNone() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearLte(0));
+
+		assertTrue(result.isEmpty());
+	}
+
+	@Test
+	void releaseYearLte_oneValidYear_returnMatch() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearLte(1977));
+
+		assertEquals(1, result.size());
+	}
+
+	@Test
+	void releaseYearLte_highValueYear_returnMatches() {
+		List<TitleEntity> result = titleRepository.findAll(TitleSpecifications.releaseYearLte(9999));
+
+		assertEquals(2, result.size());
 	}
 
 }
