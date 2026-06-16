@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 
 import com.example.critoria.api.dto.CreateReviewRequestDTO;
 import com.example.critoria.api.dto.CreateReviewResponseDTO;
@@ -16,6 +17,8 @@ import com.example.critoria.api.entity.TitleEntity;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ReviewMapper {
+
+	ReviewMapper INSTANCE = Mappers.getMapper(ReviewMapper.class);
 	
 	@Mapping(target = "id", ignore = true)
 	@Mapping(source = "titleEntity", target = "title")
