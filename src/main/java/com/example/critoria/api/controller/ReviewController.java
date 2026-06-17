@@ -22,6 +22,7 @@ import com.example.critoria.api.dto.FindAllReviewsResponseDTO;
 import com.example.critoria.api.dto.FindReviewByIdResponseDTO;
 import com.example.critoria.api.dto.UpdateReviewRequestDTO;
 import com.example.critoria.api.dto.UpdateReviewResponseDTO;
+import com.example.critoria.api.interfaces.ReviewControllerOpenApi;
 import com.example.critoria.api.service.ReviewService;
 
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewController {
+public class ReviewController implements ReviewControllerOpenApi {
 
 	private final ReviewService reviewService;
 

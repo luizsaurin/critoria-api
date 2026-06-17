@@ -24,6 +24,7 @@ import com.example.critoria.api.dto.FindAllTitlesResponseDTO;
 import com.example.critoria.api.dto.FindTitleByIdResponseDTO;
 import com.example.critoria.api.dto.UpdateTitleRequestDTO;
 import com.example.critoria.api.dto.UpdateTitleResponseDTO;
+import com.example.critoria.api.interfaces.TitleControllerOpenApi;
 import com.example.critoria.api.service.TitleService;
 
 import jakarta.validation.Valid;
@@ -31,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class TitleController {
+public class TitleController implements TitleControllerOpenApi {
 
 	private final TitleService titleService;
 	
