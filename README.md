@@ -22,7 +22,7 @@ The topics below will explain how to setup and run this project. Additional info
 
 Run docker compose to build and init database:
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 Execute a shell inside the container and login using psql:
